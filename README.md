@@ -12,6 +12,8 @@ This is my project.
 
 ## Usage
 
+To build:
+1. gulp
 ## Credits
 
 ## License
