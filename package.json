@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/voltesv/reactProject#readme",
   "devDependencies": {
-    "gulp": "github:gulpjs/gulp#4.0"
+    "gulp": "github:gulpjs/gulp#4.0",
+    "semver": "^5.1.1"
+  },
+  "description": "Node Version",
+  "engines": {
+    "node": "4.4.2"
   }
 }
