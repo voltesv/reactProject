@@ -5,6 +5,15 @@
 const gulp = require('gulp');
 const semver = require('semver');
 const jshint = require('gulp-jshint');
+const eslint = require('gulp-eslint');
+
+//eslint
+gulp.task('eslint', function () {
+   return gulp.src(['**/*.js','!node_modules/**'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
 
 //check node version task
 gulp.task('version', function (done) {
@@ -33,14 +42,15 @@ gulp.task('lint', function () {
             esversion: 6,
             node: true,
             browser: true,
-            globals: []
+            globals: [],
+            eqeqeq: true,
         }))
     .pipe(jshint.reporter('default'))
     .pipe(jshint.reporter('fail'));
 });
 
 //default task
-gulp.task('default', gulp.series(gulp.parallel('version','lint'), function (done) {
+gulp.task('default', gulp.series(gulp.parallel('version','eslint','lint'), function (done) {
     console.log('BUILD OK');
     done();
 }));
