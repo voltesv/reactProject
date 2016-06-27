@@ -1,7 +1,7 @@
 /**
  * Created by n0212893 on 6/27/2016.
  */
-var sayHello = require('./sayHello.js');
+var sayHello = require('./../src/sayHello.js');
 var name = "World";
 
 describe('Greet', function() {

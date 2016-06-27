@@ -7,6 +7,49 @@ const semver = require('semver');
 const jshint = require('gulp-jshint');
 const eslint = require('gulp-eslint');
 const webserver = require('gulp-webserver');
+const jasmine = require('gulp-jasmine');
+const reporters = require('jasmine-reporters');
+const karma = require('gulp-karma-runner');
+
+//start karma server
+gulp.task('karma', function() {
+   return gulp.src([
+       'spec/**/*.js',
+       'src/**/*.js'
+   ],
+   {'read': false}).pipe(
+        karma.server({
+            configFile: __dirname + '/karma.conf.js',
+            'singleRun': false
+        })
+    );
+});
+
+//run tests in karma
+gulp.task('test', function () {
+    return gulp.src([
+        'spec/**/*.js',
+        'src/**/*.js'
+    ],
+        {'read': false}).pipe(
+        karma.runner({
+            configFile: __dirname + '/karma.conf.js',
+            'singleRun': false
+        })
+    );
+});
+
+//jasmine test
+gulp.task('jasmine', function(done) {
+  gulp.src('spec/*.js')
+    .pipe(jasmine({
+        reporter: new reporters.TerminalReporter({
+          verbosity: 3,
+          color: true
+        })
+    }));
+    done();
+});
 
 //run webserver
 gulp.task('run', function () {
@@ -55,7 +98,7 @@ gulp.task('lint', function () {
             node: true,
             browser: true,
             globals: [],
-            eqeqeq: true,
+            eqeqeq: true
         }))
     .pipe(jshint.reporter('default'))
     .pipe(jshint.reporter('fail'));

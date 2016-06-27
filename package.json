@@ -26,9 +26,17 @@
     "gulp-eslint": "^2.0.0",
     "gulp-jasmine": "^2.4.0",
     "gulp-jshint": "^2.0.1",
+    "gulp-karma-runner": "^1.1.11",
     "gulp-webserver": "^0.9.1",
     "jasmine": "^2.4.1",
+    "jasmine-reporters": "^2.2.0",
     "jshint": "^2.9.2",
+    "karma": "^1.1.0",
+    "karma-browserifast": "^0.7.0",
+    "karma-browserify": "^5.0.5",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-commonjs": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
     "semver": "^5.1.1"
   },
   "engines": {
