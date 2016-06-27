@@ -6,6 +6,18 @@ const gulp = require('gulp');
 const semver = require('semver');
 const jshint = require('gulp-jshint');
 const eslint = require('gulp-eslint');
+const webserver = require('gulp-webserver');
+
+//run webserver
+gulp.task('run', function () {
+   gulp.src('.')
+    .pipe(webserver({
+           livereload: true,
+           open: true,
+           port: 3000,
+           https: true
+       }));
+});
 
 //eslint
 gulp.task('eslint', function () {
