@@ -1,7 +1,7 @@
 {
   "name": "react_project",
   "version": "1.0.0",
-  "description": "training class demo application",
+  "description": "Node Version",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,9 +21,10 @@
   "homepage": "https://github.com/voltesv/reactProject#readme",
   "devDependencies": {
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-jshint": "^2.0.1",
+    "jshint": "^2.9.2",
     "semver": "^5.1.1"
   },
-  "description": "Node Version",
   "engines": {
     "node": "4.4.2"
   }
