@@ -27,4 +27,4 @@ gulp.task('version', function (done) {
 gulp.task('default', gulp.series('version', function (done) {
     console.log('BUILD OK');
     done();
-});
+}));
