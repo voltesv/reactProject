@@ -7,3 +7,19 @@ module.exports = {
         filename: 'app.js'
     }
 };
+
+module.exports = {
+    entry : './src/scripts/app.js',
+    output : {
+        filename: 'app.js'
+    },
+    moduel: {
+        loaders: [ {
+            test : /.js$/,
+            loader : 'babel-loader',
+            query : {
+                presets: ['es2015']
+            }
+        }]
+    }
+};

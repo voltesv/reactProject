@@ -11,19 +11,51 @@ const jasmine = require('gulp-jasmine');
 const reporters = require('jasmine-reporters');
 const karma = require('gulp-karma-runner');
 const webpack = require('webpack-stream');
+const del = require('del');
+const DIST = 'dist';
+
+
+//clean
+gulp.task('clean', function() {
+    console.log ('removing DIST directory');
+    return del([
+        'DIST'
+    ]);
+});
 
 //webpack
 gulp.task('webpack', function() {
    return gulp.src('src/scripts/app.js')
     .pipe(webpack(require('./webpack.config.js')))
-    .pipe(gulp.dest('dist/scripts/'));
+    .pipe(gulp.dest('DIST/scripts/'));
 });
+
+//copy
+gulp.task('copy', function () {
+    return gulp.src('src/*.html').pipe(gulp.dest(DIST));
+});
+
+//run webserver
+gulp.task('run', function () {
+    gulp.src('src')
+        .pipe(webserver({
+            livereload: true,
+            open: true,
+            port: 3000,
+            https: true
+        }));
+});
+
+//build
+gulp.task('build', gulp.series(gulp.parallel('clean','webpack','copy'),['run'], function(done) {
+    console.log('webpack cleanup OK');
+    done();
+}));
 
 //start karma server
 gulp.task('karma', function() {
    return gulp.src([
-       'spec/**/*.js',
-       'src/**/*.js'
+       'spec/**/*.js'
    ],
    {'read': false}).pipe(
         karma.server({
@@ -59,23 +91,12 @@ gulp.task('jasmine', function(done) {
     done();
 });
 
-//run webserver
-gulp.task('run', function () {
-   gulp.src('dist')
-    .pipe(webserver({
-           livereload: true,
-           open: true,
-           port: 3000,
-           https: true
-       }));
-});
-
 //eslint
 gulp.task('eslint', function () {
-   return gulp.src(['**/*.js','!node_modules/**','!karma.conf.js'])
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+    return gulp.src(['**/*.js','!node_modules/**','!karma.conf.js','!dist/**'])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
 });
 
 //check node version task

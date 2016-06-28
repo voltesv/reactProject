@@ -1,4 +1,6 @@
 console.log('I have a problem');
-var sayHello = require('./sayHello');
-document.getElementById('welcome-message')
-    .innerHTML = sayHello.greet('Your name');
+const sayHello = require('./sayHello');
+window.addEventListener('load', function() {
+   /* document.getElementById('welcome-message').innerHTML = 'Ray'; */
+    document.getElementById('welcome-message').innerHTML = sayHello.greet('Ray');
+});

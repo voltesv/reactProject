@@ -1,6 +1,6 @@
 # React Project Template
 
-React Project TEmplate with automated build.
+React Project Template with automated build.
 
 This is my project.
 
