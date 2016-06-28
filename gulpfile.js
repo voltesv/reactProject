@@ -64,7 +64,7 @@ gulp.task('run', function () {
 
 //eslint
 gulp.task('eslint', function () {
-   return gulp.src(['**/*.js','!node_modules/**'])
+   return gulp.src(['**/*.js','!node_modules/**','!karma.conf.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
@@ -105,7 +105,7 @@ gulp.task('lint', function () {
 });
 
 //default task
-gulp.task('default', gulp.series(gulp.parallel('version','eslint','lint'), function (done) {
+gulp.task('default', gulp.series(gulp.parallel('version','eslint','lint'),['jasmine','test'], function (done) {
     console.log('BUILD OK');
     done();
 }));
