@@ -10,6 +10,14 @@ const webserver = require('gulp-webserver');
 const jasmine = require('gulp-jasmine');
 const reporters = require('jasmine-reporters');
 const karma = require('gulp-karma-runner');
+const webpack = require('webpack-stream');
+
+//webpack
+gulp.task('webpack', function() {
+   return gulp.src('src/scripts/app.js')
+    .pipe(webpack(require('./webpack.config.js')))
+    .pipe(gulp.dest('dist/scripts/'));
+});
 
 //start karma server
 gulp.task('karma', function() {
